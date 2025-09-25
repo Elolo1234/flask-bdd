@@ -1,0 +1,18 @@
+[
+    {
+        "especie": "coral-azul",
+        "nome_popular": "Coral Azul",
+        "extincao": false,
+        "indice_temperatura": 26.5,
+        "indice_poluicao": 2.1,
+        "id": 2
+    },
+    {
+        "especie": "coral-azul",
+        "nome_popular": "Coral Azul",
+        "extincao": false,
+        "indice_temperatura": 26.5,
+        "indice_poluicao": 2.1,
+        "id": 3
+    }
+]
