@@ -1,29 +1,38 @@
 from flask import Flask
-from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager
-from datetime import timedelta
+from extensions import db, bcrypt, jwt
 
+def create_app():
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coralsense.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['JWT_SECRET_KEY'] = 'chave_super_secreta_mude_esta'
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600  # 1h
 
-from routes.auth_routes import auth_bp
-from routes.coral_route import coral_bp
-from routes.pesquisa_route import pesquisa_bp
-from routes.pesquisador_route import pesquisador_bp
+    db.init_app(app)
+    bcrypt.init_app(app)
+    jwt.init_app(app)
 
-app = Flask(__name__)
+    # Blueprints
+    from routes.auth_routes import auth_bp
+    from routes.coral_routes import coral_bp
+    from routes.pesquisa_routes import pesquisa_bp
+    from routes.pesquisador_routes import pesquisador_bp
 
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(coral_bp, url_prefix="/coral")
+    app.register_blueprint(pesquisa_bp, url_prefix="/pesquisa")
+    app.register_blueprint(pesquisador_bp, url_prefix="/pesquisador")
 
-app.config["JWT_SECRET_KEY"] = "minha_chave_super_secreta"
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+    # Criar tabelas
+    with app.app_context():
+        db.create_all()
 
+    @app.route('/')
+    def home():
+        return {"msg": "API CoralSense com autenticação JWT ativa"}
 
-bcrypt = Bcrypt(app)
-jwt = JWTManager(app)
-
-
-app.register_blueprint(auth_bp)
-app.register_blueprint(coral_bp)
-app.register_blueprint(pesquisa_bp)
-app.register_blueprint(pesquisador_bp)
+    return app
 
 if __name__ == "__main__":
+    app = create_app()
     app.run(debug=True)

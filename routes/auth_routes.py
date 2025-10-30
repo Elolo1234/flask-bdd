@@ -1,48 +1,32 @@
-from flask import Blueprint, jsonify, request
-from flask_bcrypt import Bcrypt
-from flask_jwt_extended import (
-    create_access_token,
-    jwt_required,
-    get_jwt_identity,
-    unset_jwt_cookies
-)
-from dao.usuario_dao import salvar_usuario, buscar_usuario_por_email
+from flask import Blueprint, request, jsonify
+from extensions import db, bcrypt, jwt
+from models.usuario import User, TokenBlocklist
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt
 
-auth_bp = Blueprint("auth", __name__)
-bcrypt = Bcrypt()
+auth_bp = Blueprint('auth_bp', __name__)
 
-@auth_bp.route("/register", methods=["POST"])
+# Registro de usuário (exemplo)
+@auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    senha_hash = bcrypt.generate_password_hash(data["senha"]).decode("utf-8")
+    hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+    user = User(username=data['username'], password=hashed_password)
+    db.session.add(user)
+    db.session.commit()
+    return jsonify({"msg": "Usuário registrado com sucesso"}), 201
 
-    novo_usuario = {
-        "nome": data["nome"],
-        "email": data["email"],
-        "senha": senha_hash
-    }
-    salvar_usuario(novo_usuario)
-    return jsonify({"message": "Usuário criado com sucesso!"}), 201
-
-
-@auth_bp.route("/login", methods=["POST"])
+# Login (exemplo)
+@auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    usuario = buscar_usuario_por_email(data["email"])
+    user = User.query.filter_by(username=data['username']).first()
+    if user and bcrypt.check_password_hash(user.password, data['password']):
+        access_token = create_access_token(identity=user.id)
+        return jsonify(access_token=access_token)
+    return jsonify({"msg": "Usuário ou senha incorretos"}), 401
 
-    if usuario and bcrypt.check_password_hash(usuario["senha"], data["senha"]):
-        token = create_access_token(identity=usuario["email"])
-        return jsonify({
-            "message": "Login realizado com sucesso!",
-            "access_token": token
-        }), 200
-    else:
-        return jsonify({"message": "Usuário ou senha incorretos!"}), 401
-
-
-@auth_bp.route("/logout", methods=["POST"])
-@jwt_required()
-def logout():
-    resp = jsonify({"message": "Logout realizado!"})
-    unset_jwt_cookies(resp)
-    return resp, 200
+# Validação de tokens revogados
+@jwt.token_in_blocklist_loader
+def check_if_token_revoked(jwt_header, jwt_payload):
+    jti = jwt_payload.get("jti")
+    return TokenBlocklist.query.filter_by(jti=jti).first() is not None
