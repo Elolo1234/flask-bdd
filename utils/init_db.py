@@ -1,10 +1,13 @@
+import sqlite3
+from models.usuario import criar_tabela_usuario
 
-from dao.coral_dao import CoralDAO
-from dao.pesquisador_dao import PesquisadorDAO
-from dao.pesquisa_dao import PesquisaDAO
+def get_db_connection():
+    conn = sqlite3.connect("coralsense.db")
+    return conn
 
 def init_db():
-    """Inicializa todas as tabelas do banco"""
-    CoralDAO().create_table()
-    PesquisadorDAO().create_table()
-    PesquisaDAO().create_table()
+    criar_tabela_usuario()
+    print("Banco inicializado com sucesso!")
+
+if __name__ == "__main__":
+    init_db()
