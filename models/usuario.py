@@ -1,22 +1,12 @@
-from datetime import datetime
-from app import db
+from extensions import db
 
-class User(db.Model):
-    __tablename__ = 'users'
+# ...existing code...
+class Pesquisador(db.Model):
+    __tablename__ = "pesquisadores"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    nome = db.Column(db.String(200), nullable=False)
+    area = db.Column(db.String(200), nullable=True)
 
     def to_dict(self):
-        return {
-            "id": self.id,
-            "username": self.username,
-            "created_at": self.created_at
-        }
-
-class TokenBlocklist(db.Model):
-    __tablename__ = 'token_blocklist'
-    id = db.Column(db.Integer, primary_key=True)
-    jti = db.Column(db.String(36), nullable=False, index=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+        return {"id": self.id, "nome": self.nome, "area": self.area}
+# ...existing code...
