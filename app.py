@@ -39,7 +39,7 @@ def create_app():
     
     @app.route('/')
     def home():
-        return jsonify({"msg": "API CoralSense funcionando!"}), 200
+        return jsonify({"msg": "API CoralSense funcionando!!"}), 200
 
     return app
 
