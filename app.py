@@ -50,6 +50,7 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
+    app.run(host="0.0.0.0", port = os.environ.get('PORT', 3000), debug=True)
 
     with app.app_context():
         from models.usuario import User, TokenBlocklist
@@ -64,6 +65,3 @@ if __name__ == "__main__":
     print(app.url_map)
 
     app.run(debug=True)
-
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=False)
