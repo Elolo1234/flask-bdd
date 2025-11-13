@@ -1,0 +1,490 @@
+type: collection.insomnia.rest/5.0
+name: CoralSense API
+meta:
+  id: wrk_942e85785bd74c0489c04bd3ec226cce
+  created: 1761869792531
+  modified: 1762977747060
+  description: ""
+collection:
+  - url: "{{ _.base_url }}/auth/register"
+    name: Registrar Usuário
+    meta:
+      id: req_866519abdee64d24b3db46a9e9bc48dc
+      created: 1761869792642
+      modified: 1762997217634
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792642
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "username": "eloisa",
+          "password": "123456"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/auth/login"
+    name: Login
+    meta:
+      id: req_44b2e88218624bcf9980ad81def96ca2
+      created: 1761869792788
+      modified: 1762997196278
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792788
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "username": "eloisa",
+          "password": "123456"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/auth/logout"
+    name: Logout
+    meta:
+      id: req_e70db443aa634ce086a660e11d37a719
+      created: 1761869792816
+      modified: 1763004134851
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792816
+    method: POST
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_b5f6cec9576b4c4b9710a6550dca0706
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDA5OCwianRpIjoiODA5Y2E4NzUtZjliMi00NzE4LWJmNTUtYWUyOGRmOTFlZjFmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQwOTgsImNzcmYiOiIyZDU3YjkyNi0yOTM1LTRlZDYtYjQ0Zi1iNjNiMGFhZmIzMTAiLCJleHAiOjE3NjMwMTEyOTh9.deSYgRfhll5EgJvHTdaf6MR-My5PPISha5lzKggkiLU
+        id: pair_c9ff8999a100458ca46e857d44f14cb1
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/corais/"
+    name: Listar Corais
+    meta:
+      id: req_dd3d86c4d7f544f6b18dc2fb77e27527
+      created: 1761869792866
+      modified: 1763004181014
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792866
+    method: GET
+    body:
+      mimeType: application/json
+      text: |
+        [
+          {
+            "id": 1,
+            "nome": "Coral Fogo",
+            "localizacao": "Fernando de Noronha",
+            "especie": "Millepora alcicornis"
+          },
+          {
+            "id": 2,
+            "nome": "Coral Cerebro",
+            "localizacao": "Recife de Maracajaú",
+            "especie": "Diploria labyrinthiformis"
+          }
+        ]
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_a047dba43d234ab693d0dfdc707d0d41
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_ff6f72f1e04e455698c9968364b6b3e7
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/corais/"
+    name: Criar Coral
+    meta:
+      id: req_bd598babf9c447dca54108e1a55b2e09
+      created: 1761869792924
+      modified: 1763004222989
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792924
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nome": "Coral Fogo",
+          "localizacao": "Fernando de Noronha",
+          "especie": "Millepora alcicornis"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_cc22b05b1b3042a5b93119a8f4a5e499
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_b3efdd2e1ddb47e3bf6c492c8f74410b
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisas/"
+    name: Listar Pesquisas
+    meta:
+      id: req_3e91b2201a3b4ef1901c7c3a5c33ab96
+      created: 1761869792928
+      modified: 1763004244343
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792928
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_732b87e008dd459f969d615d5e3e8f44
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_f5eeba91fe544a94b59fe0cdb2d944e5
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisas/"
+    name: Criar Pesquisa
+    meta:
+      id: req_34ff95b43df04435861f0c6ca2a2e0a1
+      created: 1761869792932
+      modified: 1763004265428
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792932
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "titulo": "Análise da diversidade de corais",
+          "descricao": "Estudo feito no litoral pernambucano"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_1a105260da874da28fec41db989d5794
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_f952a928b43b4ded84792ee368c6fb3f
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisas/1"
+    name: Obter Pesquisa
+    meta:
+      id: req_e267251de8e94394b99acbd4b9749268
+      created: 1761869792937
+      modified: 1763004287148
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792937
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_2b854020e86e44efa6e90f177a4b115f
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_6ffe0702786342ac8bba155e8e9c34cc
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisas/1"
+    name: Atualizar Pesquisa
+    meta:
+      id: req_4ff564dbace249ca830f90a48ade325b
+      created: 1761869792941
+      modified: 1763004309850
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792941
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "titulo": "Análise da diversidade dos corais",
+          "descricao": "Atualização da pesquisa com novos dados"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_3d8e70be3fc94fed8dce651908900266
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_5e56d493d08141178cd7101ec637cff6
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisas/1"
+    name: Deletar Pesquisa
+    meta:
+      id: req_dc40d2eadae3463a9d7223e6d7fc880d
+      created: 1761869792946
+      modified: 1763004327141
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792946
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_1b4e2b1cf39d4d3fa5a803b16fe7a511
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_9309c85619934338a153d7a493fb2c89
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisadores/"
+    name: Listar Pesquisadores
+    meta:
+      id: req_daa76e4f13ad4ce795a7865fde0ef849
+      created: 1761869792951
+      modified: 1763004390766
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792951
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_48b96540023e4deba6e98facedc18763
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_b76e87d6475b481abdbc67873d8f0c12
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisadores/"
+    name: Criar Pesquisador
+    meta:
+      id: req_65aa6c9277114988a861490368f4c338
+      created: 1761869792957
+      modified: 1763004401685
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792957
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "nome": "Dra. Ana Paula",
+          "area": "Biologia Marinha"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_94367c2c4bb94cc8b88c77f1185084e5
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_761343107dc3408694b6427a651c512a
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisadores/1"
+    name: Obter Pesquisador
+    meta:
+      id: req_405525ca812547eaac10c42aeb70f31d
+      created: 1761869792961
+      modified: 1763004419688
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792961
+    method: GET
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_4782cac3c70f43ba9758b9bf87830da9
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_074ea33847894fc6877bb5cc6e5fe543
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisadores//1"
+    name: Atualizar Pesquisador
+    meta:
+      id: req_dc691e0a1257405e8a8fccf8210dde48
+      created: 1761869792963
+      modified: 1763004436446
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792963
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "area": "Ecologia de Corais"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_759bf60d28974bc1a76a33c266f87352
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_eacd9c07caab479eb5af7a4993122a98
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: "{{ _.base_url }}/pesquisadores/1"
+    name: Deletar Pesquisador
+    meta:
+      id: req_3c5a5a67ab374b9fae7b153ba3e25265
+      created: 1761869792966
+      modified: 1763004445406
+      isPrivate: false
+      description: ""
+      sortKey: -1761869792966
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_cd0093518c074d0ea061146d619c5373
+      - name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc2MzAwNDE0NiwianRpIjoiZWFkYWYzYmUtODk3Yi00OTI2LTgxYTYtYmMwZTRiNjBkZmRiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NjMwMDQxNDYsImNzcmYiOiI5ZGI1NjA0Ny05ZGI1LTQ5ZGEtOTc2Zi0xZmFjN2E0OWI2ZDMiLCJleHAiOjE3NjMwMTEzNDZ9.Pq8DjlEhAzd6AeA5AWjKm0FlFr6TTrYgEk3LJbKP89E
+        id: pair_3aca1fa7e546439bbfd45771a35a2195
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_719c232940134a444b111e00c1a86c0138e31719
+    created: 1762977747087
+    modified: 1762977747087
+environments:
+  name: Base Environment
+  meta:
+    id: env_719c232940134a444b111e00c1a86c0138e31719
+    created: 1761869793086
+    modified: 1762977804193
+    isPrivate: false
+  data:
+    base_url: http://127.0.0.1:5000
