@@ -41,10 +41,6 @@ def create_app():
     app.register_blueprint(pesquisa_bp, url_prefix='/pesquisas')
     app.register_blueprint(pesquisador_bp, url_prefix='/pesquisadores')
 
-    @app.route('/')
-    def home():
-        return jsonify({"msg": "API CoralSense funcionando!!"}), 200
-
     return app
 
 
