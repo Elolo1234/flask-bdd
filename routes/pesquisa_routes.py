@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from extensions import db
 from models.pesquisa import Pesquisa
+from models.pesquisador import Pesquisador
+from models.coral import Coral
 
 pesquisa_bp = Blueprint('pesquisa_bp', __name__)
 
@@ -15,21 +17,32 @@ def listar_pesquisas():
 @pesquisa_bp.route('/', methods=['POST'])
 @jwt_required()
 def criar_pesquisa():
-    data = request.get_json()
+    if not request.is_json:
+        return jsonify({"msg": "Content-Type deve ser application/json"}), 400
 
-    if not data or 'titulo' not in data:
+    data = request.get_json()
+    titulo = data.get('titulo')
+    objetivo = data.get('objetivo')
+    ano = data.get('ano')
+    local = data.get('local')
+    pesquisador_id = data.get('pesquisador_id')
+    coral_id = data.get('coral_id')
+
+    if not titulo:
         return jsonify({"msg": "Campo 'titulo' é obrigatório"}), 400
 
-    nova_pesquisa = Pesquisa(
-        titulo=data.get('titulo'),
-        objetivo=data.get('objetivo'),
-        ano=data.get('ano'),
-        local=data.get('local'),
-        coral_relacionado=data.get('coral_relacionado')
+    pesquisa = Pesquisa(
+        titulo=titulo,
+        objetivo=objetivo,
+        ano=ano,
+        local=local,
+        pesquisador_id=pesquisador_id,
+        coral_id=coral_id
     )
-    db.session.add(nova_pesquisa)
+    db.session.add(pesquisa)
     db.session.commit()
-    return jsonify({"msg": "Pesquisa criada com sucesso"}), 201
+
+    return jsonify({"msg": "Pesquisa criada com sucesso", "pesquisa": pesquisa.to_dict()}), 201
 
 
 @pesquisa_bp.route('/<int:id>', methods=['GET'])
@@ -53,10 +66,11 @@ def atualizar_pesquisa(id):
     pesquisa.objetivo = data.get('objetivo', pesquisa.objetivo)
     pesquisa.ano = data.get('ano', pesquisa.ano)
     pesquisa.local = data.get('local', pesquisa.local)
-    pesquisa.coral_relacionado = data.get('coral_relacionado', pesquisa.coral_relacionado)
+    pesquisa.pesquisador_id = data.get('pesquisador_id', pesquisa.pesquisador_id)
+    pesquisa.coral_id = data.get('coral_id', pesquisa.coral_id)
 
     db.session.commit()
-    return jsonify({"msg": "Pesquisa atualizada com sucesso"}), 200
+    return jsonify({"msg": "Pesquisa atualizada com sucesso", "pesquisa": pesquisa.to_dict()}), 200
 
 
 @pesquisa_bp.route('/<int:id>', methods=['DELETE'])

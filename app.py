@@ -2,12 +2,13 @@ from flask import Flask, jsonify
 from datetime import timedelta
 from extensions import db, bcrypt, jwt
 
+
 def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///coralsense.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['JWT_SECRET_KEY'] = 'troque_essa_chave_para_uma_segura'
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=2)  # Token dura 2h
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=2)  
 
     db.init_app(app)
     bcrypt.init_app(app)
@@ -50,9 +51,11 @@ if __name__ == "__main__":
     app = create_app()
 
     with app.app_context():
-        from models.usuario import User, TokenBlocklist, Pesquisador
+        from models.usuario import User, TokenBlocklist
+        from models.pesquisador import Pesquisador
         from models.coral import Coral
         from models.pesquisa import Pesquisa
+
         db.create_all()
         print("✅ Banco de dados e tabelas criadas (se ainda não existiam).")
 
