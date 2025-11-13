@@ -1,7 +1,7 @@
 import json
 import os
 
-# Caminho absoluto e seguro para o arquivo JSON
+
 CAMINHO_PESQUISA_JSON = os.path.join(os.path.dirname(__file__), '..', 'dados', 'pesquisas.json')
 
 def inicializar_arquivo():

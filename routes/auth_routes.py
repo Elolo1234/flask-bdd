@@ -11,9 +11,9 @@ from flask_jwt_extended import (
 
 auth_bp = Blueprint('auth_bp', __name__)
 
-# ---------------------------------
-# 🔹 Rota de Registro de Usuário
-# ---------------------------------
+
+
+
 @auth_bp.route('/register', methods=['POST'])
 def register():
     if not request.is_json:
@@ -26,11 +26,13 @@ def register():
     if not username or not password:
         return jsonify({"msg": "Campos 'username' e 'password' são obrigatórios"}), 400
 
-    # Verifica se o usuário já existe
+
+
     if User.query.filter_by(username=username).first():
         return jsonify({"msg": "Usuário já existe"}), 400
 
-    # Criptografa a senha usando método do modelo
+
+
     user = User(username=username)
     user.set_password(password)
 
@@ -40,9 +42,7 @@ def register():
     return jsonify({"msg": "Usuário registrado com sucesso"}), 201
 
 
-# ---------------------------------
-# 🔹 Rota de Login (gera token JWT)
-# ---------------------------------
+
 @auth_bp.route('/login', methods=['POST'])
 def login():
     if not request.is_json:
@@ -63,22 +63,18 @@ def login():
     return jsonify(access_token=access_token), 200
 
 
-# ---------------------------------
-# 🔹 Rota de Logout (invalida token)
-# ---------------------------------
+
 @auth_bp.route('/logout', methods=['POST'])
 @jwt_required()
 def logout():
-    jti = get_jwt()["jti"]  # ID único do token
+    jti = get_jwt()["jti"]  
     now = datetime.utcnow()
     db.session.add(TokenBlocklist(jti=jti, created_at=now))
     db.session.commit()
     return jsonify({"msg": "Logout realizado. Token invalidado."}), 200
 
 
-# ---------------------------------
-# 🔹 Verifica se o token foi revogado (logout)
-# ---------------------------------
+
 @jwt.token_in_blocklist_loader
 def check_if_token_revoked(jwt_header, jwt_payload):
     jti = jwt_payload.get("jti")
@@ -86,9 +82,7 @@ def check_if_token_revoked(jwt_header, jwt_payload):
     return token is not None
 
 
-# ---------------------------------
-# 🔹 (Opcional) Rota de teste protegida
-# ---------------------------------
+
 @auth_bp.route('/protected', methods=['GET'])
 @jwt_required()
 def protected():

@@ -1,3 +1,4 @@
+import os 
 from flask import Flask, jsonify
 from datetime import timedelta
 from extensions import db, bcrypt, jwt
@@ -57,9 +58,12 @@ if __name__ == "__main__":
         from models.pesquisa import Pesquisa
 
         db.create_all()
-        print("✅ Banco de dados e tabelas criadas (se ainda não existiam).")
+        print(" Banco de dados e tabelas criadas (se ainda não existiam).")
 
     print("Rotas registradas:")
     print(app.url_map)
 
     app.run(debug=True)
+
+    port = int(os.environ.get('PORT', 5000))  # Recupera a porta do Render; fallback 5000 para desenvolvimento
+    app.run(host='0.0.0.0', port=port, debug=False)  # host='0.0.0.0' para escutar em todas as interfaces; debug=False para produção

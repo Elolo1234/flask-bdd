@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from extensions import db
 from flask_jwt_extended import jwt_required
-from models.coral import Coral  # ✅ Import necessário
+from models.coral import Coral 
 
 coral_bp = Blueprint('coral_bp', __name__)
 
